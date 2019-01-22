@@ -9,6 +9,7 @@ window.onload = function() {
         $.ajax({
             url: "http://localhost:8000/homeworkBox_api/createBox",
             data: {
+                createId: 'wxid255432',
                 boxName: $('input[name=boxName]').val(),
                 courseName: $('input[name=courseName]').val(),
                 className: $('input[name=className]').val(),

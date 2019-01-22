@@ -1,22 +1,40 @@
 const createBoxModel = require('../model/model_createbox');
-
+    
 module.exports = {
     async createBox(ctx) {
         let boxInfo = {
+            createId: ctx.request.body.createId,
             boxName: ctx.request.body.boxName,
-            courseName: ctx.request.courseName,
+            courseName: ctx.request.body.courseName,
             className: ctx.request.body.className
         }
-        console.log(boxInfo);
-        await createBoxModel.createBox(boxInfo)
+
+        await createBoxModel.findByBoxInfo(boxInfo)
             .then(async(res) => {
-                console.log(res);
-                if(res.courseName === boxInfo.courseName && res.className === boxInfo.className) {
-                    console.log("该班级该课程已存在，请重新输入!");
-                } else if(res.boxName === boxInfo.boxName) {
-                    console.log("该盒子名称已被占用，请重新输入!");
+                if(res.length >= 1) {
+                    if(res[0].courseName === boxInfo.courseName && res[0].className === boxInfo.className) {
+                        ctx.body = {
+                            success: false,
+                            msg: '该班级该课程已存在，请重新输入!',
+                            status: 400
+                        }
+                    } else if(res[0].boxName === boxInfo.boxName) {
+                        ctx.body = {
+                            success: false,
+                            msg: '该盒子名称已被占用，请重新输入!',
+                            status: 400
+                        }
+                    }
                 } else {
-                    console.log("创建成功!")
+                    await createBoxModel.createBox(boxInfo);
+                    let returnData = await createBoxModel.findByBoxInfo(boxInfo);
+                    // console.log(returnData);
+                    ctx.body = {
+                        success: true,
+                        msg: '创建成功!',
+                        status: 200,
+                        data: returnData[0].boxId
+                    }
                 }
             })
     }

@@ -6,13 +6,19 @@ let createBox = async(data) => {
     let min = 10000;
 
     data.boxId = getRandom.getRandomCode(max, min);
-    console.log(data.boxId);
 
-    let _sql = `INSERT INTO boxes(boxId,boxName,courseName,className) VALUES(?,?,?,?)`;
-    let res = await mysql.query(_sql, [data.boxId, data.boxName, data.courseName, data.className]);
-    console.log("插入数据："+ res);
+    let _sql = `INSERT INTO boxes(boxId,createId,boxName,courseName,className) VALUES(?,?,?,?,?)`;
+    let res = await mysql.query(_sql, [data.boxId,data.createId,data.boxName, data.courseName, data.className]);
     return res;
 }
+
+let findByBoxInfo = async(data) => {
+    let _sql = `SELECT * FROM boxes WHERE courseName="${data.courseName}" OR className="${data.className}" OR boxName="${data.boxName}"`;
+    let res = await mysql.query(_sql);
+    return res;
+}
+
 module.exports = {
-    createBox
+    createBox,
+    findByBoxInfo
 };
