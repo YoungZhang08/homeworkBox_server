@@ -1,0 +1,31 @@
+{
+  "name": "homeworkbox_server",
+  "version": "1.0.0",
+  "description": "作业盒子后端",
+  "main": "app.js",
+  "scripts": {
+    "test": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YoungZhang08/homeworkBox_server.git"
+  },
+  "keywords": [
+    "Node.js",
+    "Koa",
+    "Mysql"
+  ],
+  "author": "Youngzhang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YoungZhang08/homeworkBox_server/issues"
+  },
+  "homepage": "https://github.com/YoungZhang08/homeworkBox_server#readme",
+  "devDependencies": {
+    "body-parser": "^1.18.3",
+    "koa": "^2.6.2",
+    "koa-bodyparser": "^4.2.1",
+    "koa-router": "^7.4.0",
+    "mysql": "^2.16.0"
+  }
+}
