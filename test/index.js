@@ -20,5 +20,19 @@ window.onload = function() {
                 console.log(data)
             }
         })	
+    })
+    $('.add').click(function(){
+        $.ajax({
+            url: "http://localhost:8000/homeworkBox_api/addBox",
+            data: {
+                userId: 'wxid123456789',
+                boxId: $('input[name=boxId]').val()
+            },
+            type: "POST",
+            dataType: 'json',
+            success: function (data) {
+                console.log(data)
+            }
+        })	
     })	
 }

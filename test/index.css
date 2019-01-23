@@ -56,7 +56,7 @@ input:hover,input:active,textarea:hover,textarea:active {
     display: block;
     margin: 10px 0;
 }
-.submit {
+.create,.add {
     display: block;
     width: 100%;
     height: 40px;

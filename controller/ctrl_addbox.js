@@ -6,7 +6,6 @@ module.exports = {
             userId: ctx.request.body.userId,
             boxId: ctx.request.body.boxId
         }
-
         await addBoxModel.findByUserBoxInfo(userBoxInfo)
             .then(async(res) => {
                 console.log(res);
