@@ -4,9 +4,9 @@ const config = {
     database: {
         DATABASE: 'homework_box',
         USERNAME: 'root',
-        PASSWORD: 'zyy1001happiness',
+        PASSWORD: '521Zhuzhu**',
         PORT: '3306',
-        HOST: 'localhost'
+        HOST: '193.112.4.143'
     }
 };
 

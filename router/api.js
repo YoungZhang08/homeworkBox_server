@@ -1,6 +1,6 @@
 const router = require('koa-router')();
-const createBoxCtrl = require('../controller/ctrl_createbox');
-const addBoxCtrl = require('../controller/ctrl_addbox');
+const createBoxCtrl = require('../controller/createbox');
+const addBoxCtrl = require('../controller/addbox');
 
 const routers = router
     .post('/createBox', createBoxCtrl.createBox)
