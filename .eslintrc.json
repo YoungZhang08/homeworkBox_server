@@ -9,6 +9,9 @@
         "ecmaVersion":8,
         "sourceType": "script"
     },
+    "ecmaFeatures": {
+        "destructuring": true
+    },
     "rules": {
         "indent": ["error", 2],
         "no-console": 0,
@@ -54,7 +57,7 @@
             "error",
             "1tbs"
         ],
-        "camelcase": "error",
+        "camelcase": 2,
         "comma-dangle": [
             "error",
             "always-multiline"

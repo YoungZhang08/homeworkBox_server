@@ -1,4 +1,4 @@
-const createBoxModel = require('../model/boxes')
+const boxesModel = require('../model/boxes')
     
 module.exports = {
   async createBox(ctx) {
@@ -8,9 +8,7 @@ module.exports = {
       courseName: ctx.request.body.courseName,
       className: ctx.request.body.className,
     }
-
-    console.log(boxInfo, 1)
-    await createBoxModel.findByBoxInfo(boxInfo)
+    await boxesModel.findByBoxInfo(boxInfo)
       .then(async(res) => {
         if (res.length >= 1) {
           if (res[0].courseName === boxInfo.courseName && res[0].className === boxInfo.className) {
@@ -27,8 +25,8 @@ module.exports = {
             }
           }
         } else {
-          await createBoxModel.createBox(boxInfo)
-          let returnData = await createBoxModel.findByBoxInfo(boxInfo)
+          await boxesModel.createBox(boxInfo)
+          let returnData = await boxesModel.findByBoxInfo(boxInfo)
           // console.log(returnData);
 
           ctx.body = {
@@ -37,6 +35,12 @@ module.exports = {
             status: 200,
             data: returnData[0].boxId,
           }
+        }
+      }, () => {
+        ctx.body = {
+          success: false,
+          msg: '创建失败',
+          status: 400,
         }
       })
   },

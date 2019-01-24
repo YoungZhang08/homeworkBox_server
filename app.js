@@ -14,7 +14,6 @@ app.use(async(ctx, next) => {
   ctx.set('Content-Type', 'application/json;charset=utf-8')
   ctx.set('Access-Control-Allow-Credentials', true)
   ctx.set('Access-Control-Max-Age', 300)
-
   if (ctx.request.method === 'OPTIONS') {
     ctx.body = {
       msg: 'preFlighted requested is ok!',

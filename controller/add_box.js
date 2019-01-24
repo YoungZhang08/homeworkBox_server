@@ -9,8 +9,8 @@ module.exports = {
     }
 
     await addBoxModel.findByUserBoxInfo(userBoxInfo)
-      .then(async(res) => {
-        console.log(res)
+      .then(async (res) => {
+        console.log(res, 222)
         if (res.length >= 1 && res[0].userId === userBoxInfo.userId && res[0].boxId === userBoxInfo.boxId) {
           ctx.body = {
             success: false,
@@ -24,6 +24,12 @@ module.exports = {
             msg: '加入成功!',
             status: 200,
           }
+        }
+      }, () => {
+        ctx.body = {
+          success: false,
+          msg: '加入失败',
+          status: 400,
         }
       })
   },
