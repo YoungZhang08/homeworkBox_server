@@ -1,4 +1,4 @@
-const createBoxModel = require('../model/createbox');
+const boxesModel = require('../model/boxes');
     
 module.exports = {
     async createBox(ctx) {
@@ -9,7 +9,7 @@ module.exports = {
             className: ctx.request.body.className
         }
 
-        await createBoxModel.findByBoxInfo(boxInfo)
+        await boxesModel.findByBoxInfo(boxInfo)
             .then(async(res) => {
                 if(res.length >= 1) {
                     if(res[0].courseName === boxInfo.courseName && res[0].className === boxInfo.className) {
@@ -26,8 +26,8 @@ module.exports = {
                         }
                     }
                 } else {
-                    await createBoxModel.createBox(boxInfo);
-                    let returnData = await createBoxModel.findByBoxInfo(boxInfo);
+                    await boxesModel.createBox(boxInfo);
+                    let returnData = await boxesModel.findByBoxInfo(boxInfo);
                     // console.log(returnData);
                     ctx.body = {
                         success: true,
