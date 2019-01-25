@@ -1,23 +1,22 @@
 const boxesModel = require('../model/boxes')
+// const getRandom = require('../config/getRandomCode.js')
     
 module.exports = {
   async createBox(ctx) {
-    let boxInfo = {
-      createId: ctx.request.body.createId,
-      boxName: ctx.request.body.boxName,
-      courseName: ctx.request.body.courseName,
-      className: ctx.request.body.className,
-    }
+    
+    // const boxId = getRandom.getRandomCode(max, min)
+    const boxInfo = ctx.request.body
+    const { courseName, className, boxName } = boxInfo
     await boxesModel.findByBoxInfo(boxInfo)
       .then(async(res) => {
         if (res.length >= 1) {
-          if (res[0].courseName === boxInfo.courseName && res[0].className === boxInfo.className) {
+          if (res[0].courseName === courseName && res[0].className === className) {
             ctx.body = {
               success: false,
               msg: '该班级该课程已存在，请重新输入!',
               status: 400,
             }
-          } else if (res[0].boxName === boxInfo.boxName) {
+          } else if (res[0].boxName === boxName) {
             ctx.body = {
               success: false,
               msg: '该盒子名称已被占用，请重新输入!',

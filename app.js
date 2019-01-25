@@ -1,13 +1,15 @@
 const Koa = require('koa')
 const bodyParser = require('koa-bodyparser')
 const config = require('./config/default.js')
-const router = require('./router/index.js')
+// const router = require('./router/index.js')
 
 const app = new Koa()
 
 app.use(bodyParser({}))
 
 app.use(async(ctx, next) => {
+  console.log(222)
+  await next()
   ctx.set('Access-Control-Allow-Origin', '*')
   ctx.set('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE')
   ctx.set('Access-Control-Allow-Headers', 'x-requested-with, accept, origin, content-type, authorization')
@@ -20,10 +22,20 @@ app.use(async(ctx, next) => {
     }
     return 
   }
-  await next()
+  console.log(333)
 })
 
-app.use(router.routes()).use(router.allowedMethods())
+app.use(async (ctx, next) => {
+  console.log(55, ctx.request.body)
+  await next()
+  console.log(777)
+})
+
+app.use(async (ctx, next) => {
+  console.log(777)
+})
+
+// app.use(router.routes()).use(router.allowedMethods())
 
 app.listen(config.port, () => {
   console.log(`listening on port ${config.port}`)

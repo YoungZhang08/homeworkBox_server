@@ -5,5 +5,6 @@ const usersBoxes = require('../controller/add_box')
 const routers = router
   .post('/createBox', boxes.createBox)
   .post('/addBox', usersBoxes.addBox)
+  .post('/upload', '')
 
 module.exports = routers

@@ -99,6 +99,7 @@
         "space-before-blocks": [
             "error",
             "always"
-        ]
+        ],
+        "no-const-assign": "error"
     }
 }
