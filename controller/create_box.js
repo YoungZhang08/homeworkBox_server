@@ -5,11 +5,14 @@ module.exports = {
   async createBox(ctx) {
     
     const boxId = getRandom.getRandomCode(max, min)
+    console.log("boxId="+boxId)
     const boxInfo = ctx.request.body
+    boxInfo.boxId = boxId
     const { courseName, className, boxName } = boxInfo
 
     await boxesModel.findByBoxInfo(boxInfo)
       .then(async(res) => {
+        console.log(res)
         if (res.length >= 1) {
           if (res[0].courseName === courseName && res[0].className === className) {
             ctx.body = {
