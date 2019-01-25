@@ -1,11 +1,12 @@
 const boxesModel = require('../model/boxes')
-// const getRandom = require('../config/getRandomCode.js')
+const getRandom = require('../config/getRandomCode.js')
     
 module.exports = {
   async createBox(ctx) {
     
-    // const boxId = getRandom.getRandomCode(max, min)
+    const boxId = getRandom.getRandomCode()
     const boxInfo = ctx.request.body
+    boxInfo.boxId = boxId
     const { courseName, className, boxName } = boxInfo
     await boxesModel.findByBoxInfo(boxInfo)
       .then(async(res) => {
