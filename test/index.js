@@ -7,7 +7,7 @@ window.onload = function() {
     });
     $('.create').click(function() {
         $.ajax({
-            url: 'http://localhost:8000/homeworkBox_api/createBox',
+            url: 'http://localhost:8000/homework/createBox',
             data: {
                 createId: 'wxid255432',
                 boxName: $('input[name=boxName]').val(),
@@ -23,7 +23,7 @@ window.onload = function() {
     });
     $('.add').click(function() {
         $.ajax({
-            url: 'http://localhost:8000/homeworkBox_api/addBox',
+            url: 'http://localhost:8000/homework/addBox',
             data: {
                 userId: 'wxid123456789',
                 boxId: $('input[name=boxId]').val(),
