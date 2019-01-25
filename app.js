@@ -1,15 +1,14 @@
 const Koa = require('koa')
 const bodyParser = require('koa-bodyparser')
 const config = require('./config/default.js')
-// const router = require('./router/index.js')
+const router = require('./router/index.js')
 
 const app = new Koa()
 
 app.use(bodyParser({}))
 
 app.use(async(ctx, next) => {
-  console.log(222)
-  await next()
+  next()
   ctx.set('Access-Control-Allow-Origin', '*')
   ctx.set('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE')
   ctx.set('Access-Control-Allow-Headers', 'x-requested-with, accept, origin, content-type, authorization')
@@ -20,22 +19,23 @@ app.use(async(ctx, next) => {
     ctx.body = {
       msg: 'preFlighted requested is ok!',
     }
-    return 
   }
-  console.log(333)
 })
 
 app.use(async (ctx, next) => {
-  console.log(55, ctx.request.body)
-  await next()
-  console.log(777)
+  const { boxId, userId } = ctx.request.body
+  if (!boxId || !userId) {
+    ctx.body = {
+      success: false,
+      msg: '缺少参数',
+      status: 400,
+    }
+    return
+  }
+  next()
 })
 
-app.use(async (ctx, next) => {
-  console.log(777)
-})
-
-// app.use(router.routes()).use(router.allowedMethods())
+app.use(router.routes()).use(router.allowedMethods())
 
 app.listen(config.port, () => {
   console.log(`listening on port ${config.port}`)
