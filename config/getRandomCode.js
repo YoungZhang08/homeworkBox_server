@@ -1,6 +1,6 @@
-const getRandomCode = function(max, min) {
+const getRandomCode = function(max = 99999, min = 10000) {
   const range = max - min
-  let num = min + Math.floor(Math.random() * range)
+  const num = min + Math.floor(Math.random() * range)
   return num
 }
 

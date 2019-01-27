@@ -4,7 +4,8 @@
   "description": "作业盒子后端",
   "main": "app.js",
   "scripts": {
-    "test": "nodemon app.js"
+    "test": "nodemon app.js",
+    "fix": "eslint --fix ."
   },
   "repository": {
     "type": "git",
@@ -23,9 +24,14 @@
   "homepage": "https://github.com/YoungZhang08/homeworkBox_server#readme",
   "devDependencies": {
     "body-parser": "^1.18.3",
+    "eslint": "^5.12.1",
+    "eslint-config-google": "^0.11.0",
     "koa": "^2.6.2",
     "koa-bodyparser": "^4.2.1",
     "koa-router": "^7.4.0",
     "mysql": "^2.16.0"
+  },
+  "dependencies": {
+    "nodemon": "^1.18.9"
   }
 }
