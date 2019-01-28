@@ -1,16 +1,19 @@
 const mysql = require('../config/mysql.js')
 
-let createBox = async(data) => {
-  let _sql = 'INSERT INTO boxes(boxId,createId,introduce,course,class) VALUES(?,?,?,?,?)'
-  await mysql.query(_sql, [data.boxId, data.createId, data.introduce, data.courseName, data.className])
+const create = async(data) => {
+  const { boxId, createId, className, course, introduce } = data
+  const _sql = 'INSERT INTO boxes(boxId,createId,class,course,introduce) VALUES(?,?,?,?,?)'
+  const res = await mysql.query(_sql, [boxId, createId, className, course, introduce])
+  return res
 }
 
-let findByBoxInfo = async (data) => {
-  let _sql = `SELECT * FROM boxes WHERE boxId="${data.boxId}"`
-  return mysql.query(_sql)
+const find = async(data) => {
+  const _sql = 'SELECT * FROM boxes WHERE boxId = ?'
+  const res = await mysql.query(_sql, data.boxId)
+  return res
 }
 
 module.exports = {
-  createBox,
-  findByBoxInfo,
+  create,
+  find,
 }

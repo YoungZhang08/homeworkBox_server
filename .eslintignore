@@ -1,4 +1,3 @@
 # ```.eslintignore
-# test/*
+test/*
 **/node_modules/*
-**$*

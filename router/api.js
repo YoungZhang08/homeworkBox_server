@@ -1,10 +1,11 @@
 const router = require('koa-router')()
-const boxes = require('../controller/create_box')
-const usersBoxes = require('../controller/add_box')
+const { createBox } = require('../controller/create_box')
+const { addUserBox } = require('../controller/add_user_box.js')
+const { addUser } = require('../controller/add_user')
 
 const routers = router
-  .post('/createBox', boxes.createBox)
-  .post('/addBox', usersBoxes.addBox)
-  // .post('/upload', '')
+  .post('/createBox', createBox)
+  .post('/addUSerBox', addUserBox)
+  .post('/addUser', addUser)
 
 module.exports = routers
