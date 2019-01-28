@@ -6,7 +6,7 @@ let createBox = async(data) => {
 }
 
 let findByBoxInfo = async (data) => {
-  let _sql = `SELECT * FROM boxes WHERE course="${data.courseName}" OR class="${data.className}" OR boxName="${data.boxName}"`
+  let _sql = `SELECT * FROM boxes WHERE boxId="${data.boxId}"`
   return mysql.query(_sql)
 }
 

@@ -1,13 +1,17 @@
 {
     "env": {
         "es6": true,
-        "node": true
+        "node": true,
+        "jquery": true
     },
     "extends": "eslint:recommended",
     "parserOptions": {
         "destructuring": true,  
         "ecmaVersion":8,
         "sourceType": "script"
+    },
+    "globals": {
+      "window": true
     },
     "ecmaFeatures": {
         "destructuring": true

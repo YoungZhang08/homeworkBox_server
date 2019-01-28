@@ -4,7 +4,7 @@ const getRandom = require('../config/getRandomCode.js')
 module.exports = {
   async createBox(ctx) {
     
-    const boxId = getRandom.getRandomCode(max, min)
+    const boxId = getRandom.getRandomCode()
     console.log("boxId="+boxId)
     const boxInfo = ctx.request.body
     boxInfo.boxId = boxId
