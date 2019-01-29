@@ -4,7 +4,7 @@ const { create, find } = require('../model/boxes')
 const createBox = async (ctx) => {
   const boxInfo = ctx.request.body
   const { boxId, createId, className, course, introduce } = boxInfo
-  if (!boxId || !createId || !className || !course || !introduce) {
+  if (!boxId || boxId.length > 30 || !createId || !className || !course || !introduce) {
     return ctx.body = {
       status: 400,
       msg: '缺少参数',
