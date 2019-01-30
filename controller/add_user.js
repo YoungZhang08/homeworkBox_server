@@ -2,8 +2,9 @@ const { add, find } = require('../model/users')
 
 const addUser = async (ctx) => {
   const userInfo = ctx.request.body
-  const { userId, name, portrait, resources, homeworkList } = userInfo
-  if (!userId || !name || !portrait || !resources || !homeworkList) {
+  // console.log(ctx.request.body)
+  const { userId, name, portrait} = userInfo
+  if (!userId || !name || !portrait) {
     return ctx.body = {
       status: 400,
       msg: '缺少参数',

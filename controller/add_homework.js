@@ -2,7 +2,7 @@ const { add, find } = require('../model/homework')
 
 const addHomework = async (ctx) => {
   const homeworkInfo = ctx.request.body
-  console.log(ctx.request.body)
+  // console.log(ctx.request.body)
   const { boxId, title, text, deadline } = homeworkInfo
   if (!boxId || !title || !text || !deadline) {
     return ctx.body = {

@@ -11,7 +11,15 @@ let find = async(data) => {
   let res = await mysql.query(_sql, [data.boxId, data.userId])
   return res
 }
+
+// let findByUserId = async(data) => {
+//   let _sql = 'SELECT * FROM users_boxes WHERE userId=?'
+//   let res = await mysql.query(_sql, data.userId)
+//   console.log(res)
+//   return res
+// }
 module.exports = {
   add,
   find,
+  // findByUserId,
 }
