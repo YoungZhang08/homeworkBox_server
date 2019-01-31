@@ -1,5 +1,5 @@
 const { create, find } = require('../model/boxes')
-
+const { addUserBox } = require('./add_user_box')
 
 const createBox = async (ctx) => {
   const boxInfo = ctx.request.body
@@ -19,12 +19,20 @@ const createBox = async (ctx) => {
           status: 400,
         }
       }
-      await create(boxInfo).then(() => {
-        ctx.body = {
-          msg: '创建成功!',
-          status: 200,
-          data: boxInfo,
-        }
+      await create(boxInfo).then(async () => {
+        await addUserBox({userId: createId, boxId}).then(res => {
+          return ctx.body = {
+            msg: '创建成功并且添加对应关系成功!',
+            status: 200,
+            data: boxInfo,
+          }
+        }, err => {
+          console.log(err)
+          return ctx.body = {
+            msg: '创建成功得手动添加对应关系',
+            status: 100,
+          }
+        })
       }, err => {
         console.log(err)
         return ctx.body = {

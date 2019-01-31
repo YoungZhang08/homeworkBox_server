@@ -1,9 +1,15 @@
 const { add, find } = require('../model/users_boxes')
 
 const addUserBox = async (ctx) => {
-  const info = ctx.request.body
-
-  await find(info)
+  const data = ctx.request ? ctx.request.body : ctx
+  const { userId, boxId } = data
+  if (!userId || !boxId ) {
+    return ctx.body = {
+      status: 400,
+      msg: '缺少参数',
+    }
+  }
+  await find(data)
     .then(async(res) => {
       if (res.length >= 1) {
         return ctx.body = {
@@ -11,11 +17,11 @@ const addUserBox = async (ctx) => {
           status: 400,
         }
       }
-      await add(info).then(() => {
+      await add(data).then(() => {
         return ctx.body = {
           msg: '添加对应关系成功!',
           status: 200,
-          data: info,
+          data: data,
         }
       }, err => {
         console.log(err)
