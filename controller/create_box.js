@@ -11,7 +11,7 @@ const createBox = async (ctx) => {
     }
   }
 
-  await find(boxInfo)
+  await find(boxInfo, 'boxId')
     .then(async(res) => {
       if (res.length >= 1) {
         return ctx.body = {

@@ -7,13 +7,21 @@ const create = async(data) => {
   return res
 }
 
-const find = async(data) => {
-  const _sql = 'SELECT * FROM boxes WHERE boxId = ?'
-  const res = await mysql.query(_sql, data.boxId)
+const find = async(data, name) => {
+  const _sql = `SELECT * FROM boxes WHERE ${name} = ?`
+  const res = await mysql.query(_sql, data[name])
   return res
 }
+
+const findUserBoxes = async(data) => {
+  const _sql = 'select boxes.* from boxes, users_boxes, users where users.userId = users_boxes.userId and users_boxes.boxId = boxes.boxId and users.userId = ?'
+  const res = await mysql.query(_sql, data.userId)
+  return res
+}
+
 
 module.exports = {
   create,
   find,
+  findUserBoxes,
 }

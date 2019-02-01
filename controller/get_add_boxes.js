@@ -1,6 +1,6 @@
-const { find } = require('../model/users')
+const { findUserBoxes } = require('../model/boxes')
 
-const findUser = async (ctx) => {
+const getAddBoxes = async (ctx) => {
   const userInfo = ctx.request.query
   const { userId } = userInfo
   if (!userId) {
@@ -9,12 +9,12 @@ const findUser = async (ctx) => {
       msg: '缺少参数',
     }
   }
-  await find(userInfo).then(async res => {
+  await findUserBoxes(userInfo).then(async res => {
     if (res.length > 0) {
       return ctx.body = {
         status: 200,
-        msg: '已经注册过了',
-        data: res[0],
+        msg: '查到了',
+        data: res,
       }
     }
     return ctx.body = {
@@ -31,5 +31,5 @@ const findUser = async (ctx) => {
 }
 
 module.exports = {
-  findUser,
+  getAddBoxes,
 }

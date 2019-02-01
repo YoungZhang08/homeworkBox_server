@@ -1,6 +1,8 @@
 const router = require('koa-router')()
+
 const { createBox } = require('../controller/create_box')
 const { getBox } = require('../controller/get_boxes')
+const { getAddBoxes } = require('../controller/get_add_boxes')
 
 const { addUserBox } = require('../controller/add_user_box.js')
 
@@ -17,6 +19,8 @@ const routers = router
   .post('/createBox', createBox)
   // 查找盒子
   .get('/getBoxes', getBox)
+  // 查找用户加入的盒子
+  .get('/getAddBoxes', getAddBoxes)
 
   // 添加用户和盒子对应关系
   .post('/addUserBox', addUserBox)
