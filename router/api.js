@@ -15,6 +15,8 @@ const { getBoxHomework } = require('../controller/get_box_homework')
 const { getHomework } = require('../controller/get_homework')
 
 const routers = router
+  // 得到随机boxId
+  .get('/getRandom', getRandom)
   // 创建盒子
   .post('/createBox', createBox)
   // 查找盒子
@@ -28,8 +30,6 @@ const routers = router
   .post('/addUser', addUser)
   // 查找用户
   .get('/findUser', findUser)
-  // 得到随机boxId
-  .get('/getRandom', getRandom)
   // 添加作业表
   .post('/addHomework', addHomework)
   // 得到家庭作业

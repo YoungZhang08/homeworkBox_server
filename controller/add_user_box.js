@@ -14,7 +14,7 @@ const addUserBox = async (ctx) => {
       if (res.length >= 1) {
         return ctx.body = {
           msg: '你已加入过该课程，无需再次加入!',
-          status: 400,
+          status: 200,
         }
       }
       await add(data).then(() => {
@@ -27,14 +27,14 @@ const addUserBox = async (ctx) => {
         console.log(err)
         return ctx.body = {
           msg: '添加失败!',
-          status: 200,
+          status: 500,
         }
       })
     }, err => {
       console.log(err)
       return ctx.body = {
         msg: '查询失败!',
-        status: 200,
+        status: 500,
       }
     })
 }

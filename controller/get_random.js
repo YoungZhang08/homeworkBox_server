@@ -3,7 +3,7 @@ const { getRandom: getNum } = require('../config/getRandom')
 
 const getRandom = async (ctx) => {
   const boxId = getNum()
-  await find({boxId}).then(res => {
+  await find({boxId}, 'boxId').then(res => {
     if (res.length >= 1) {
       getRandom()
     } else {
