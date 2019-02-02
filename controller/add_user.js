@@ -2,8 +2,7 @@ const { add, find } = require('../model/users')
 
 const addUser = async (ctx) => {
   const userInfo = ctx.request.body
-  // console.log(ctx.request.body)
-  const { userId, name, portrait} = userInfo
+  const { userId, name, portrait } = userInfo
   if (!userId || !name || !portrait) {
     return ctx.body = {
       status: 400,
@@ -18,7 +17,8 @@ const addUser = async (ctx) => {
       }
     }
 
-    await add(userInfo).then(() => {
+    await add(userInfo).then(res => {
+      console.log(res)
       return ctx.body = {
         status: 200,
         msg: '添加成功',
