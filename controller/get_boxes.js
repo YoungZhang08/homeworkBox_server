@@ -22,7 +22,7 @@ const getBox = async (ctx) => {
       return ctx.body = {
         msg: '啥都没有!',
         status: 200,
-        data: res,
+        data: null,
       }
     }, err => {
       console.log(err)
