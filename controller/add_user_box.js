@@ -38,7 +38,7 @@ const addUserBox = async ctx => {
       console.log(err)
       return (ctx.body = {
         msg: '查询失败!',
-        status: 500,
+        status: 400,
       })
     }
   )

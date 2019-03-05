@@ -36,7 +36,7 @@ const createBox = async ctx => {
           // })
           return (ctx.body = {
             msg: '创建成功',
-            status: 500,
+            status: 200,
             data: boxInfo,
           })
         },
@@ -53,7 +53,7 @@ const createBox = async ctx => {
       console.log(err)
       return (ctx.body = {
         msg: '查询错误',
-        status: 500,
+        status: 400,
       })
     }
   )
