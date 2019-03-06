@@ -14,6 +14,8 @@ const { addHomework } = require('../controller/add_homework')
 const { getBoxHomework } = require('../controller/get_box_homework')
 const { getHomework } = require('../controller/get_homework')
 
+const { createResources } = require('../controller/create-resources')
+
 const routers = router
   // 得到随机boxId
   .get('/getRandom', getRandom)
@@ -35,5 +37,8 @@ const routers = router
   // 得到家庭作业
   .get('/getBoxHomework', getBoxHomework)
   .get('./getHomework', getHomework)
+
+  // 创立资源表
+  .post('/createResources', createResources)
 
 module.exports = routers

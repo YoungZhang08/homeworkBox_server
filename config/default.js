@@ -3,10 +3,10 @@ const config = {
 
   database: {
     DATABASE: 'homework_box',
-    USERNAME: 'root',
-    PASSWORD: '521Zhuzhu**',
+    USERNAME: 'zhangchao',
+    PASSWORD: 'zhangchao666',
     PORT: '3306',
-    HOST: '127.0.0.1',
+    HOST: '104.224.189.142',
   },
 }
 
