@@ -14,14 +14,14 @@ const { addHomework } = require('../controller/add_homework')
 const { getBoxHomework } = require('../controller/get_box_homework')
 const { getHomework } = require('../controller/get_homework')
 
-const { createResources } = require('../controller/create-resources')
+const { createResources } = require('../controller/create_resources')
 
 const routers = router
   // 得到随机boxId
   .get('/getRandom', getRandom)
   // 创建盒子
   .post('/createBox', createBox)
-  // 查找盒子
+  // 查找用户创建的盒子
   .get('/getBoxes', getBox)
   // 查找用户加入的盒子
   .get('/getAddBoxes', getAddBoxes)
@@ -32,13 +32,15 @@ const routers = router
   .post('/addUser', addUser)
   // 查找用户
   .get('/findUser', findUser)
-  // 添加作业表
-  .post('/addHomework', addHomework)
-  // 得到家庭作业
-  .get('/getBoxHomework', getBoxHomework)
-  .get('./getHomework', getHomework)
 
-  // 创立资源表
+  // 发布作业
+  .post('/addHomework', addHomework)
+  // 查找盒子下的作业
+  .get('/getBoxHomework', getBoxHomework)
+  // 查找主页的作业
+  .get('/getHomework', getHomework)
+
+  // 发布资源
   .post('/createResources', createResources)
 
 module.exports = routers
