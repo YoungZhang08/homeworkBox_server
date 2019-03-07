@@ -1,13 +1,14 @@
 const router = require('koa-router')()
 
 const { createBox } = require('../controller/create_box')
-const { getBox } = require('../controller/get_boxes')
+const { getBoxes } = require('../controller/get_boxes')
 const { getAddBoxes } = require('../controller/get_add_boxes')
 
 const { addUserBox } = require('../controller/add_user_box.js')
 
 const { addUser } = require('../controller/add_user')
 const { findUser } = require('../controller/find_user')
+const { getUsers } = require('../controller/get_users')
 
 const { getRandom } = require('../controller/get_random')
 const { addHomework } = require('../controller/add_homework')
@@ -22,7 +23,7 @@ const routers = router
   // 创建盒子
   .post('/createBox', createBox)
   // 查找用户创建的盒子
-  .get('/getBoxes', getBox)
+  .get('/getBoxes', getBoxes)
   // 查找用户加入的盒子
   .get('/getAddBoxes', getAddBoxes)
 
@@ -32,6 +33,8 @@ const routers = router
   .post('/addUser', addUser)
   // 查找用户
   .get('/findUser', findUser)
+  // 查找该盒子下的所有用户
+  .get('/getUsers', getUsers)
 
   // 发布作业
   .post('/addHomework', addHomework)

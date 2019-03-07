@@ -1,6 +1,6 @@
 const { find } = require('../model/boxes')
 
-const getBox = async ctx => {
+const getBoxes = async ctx => {
   const boxInfo = ctx.request.query
   const { createId } = boxInfo
   if (!createId) {
@@ -36,5 +36,5 @@ const getBox = async ctx => {
 }
 
 module.exports = {
-  getBox,
+  getBoxes,
 }
