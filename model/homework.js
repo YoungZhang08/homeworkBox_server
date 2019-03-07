@@ -21,8 +21,9 @@ let find = async data => {
 }
 
 let findBoxHomework = async data => {
-  let _sql = 'select homework.* from homework, users_boxes where users_boxes.boxId = homework.boxId and users_boxes.userId = ?'
-  let res = await mysql.query(_sql, data.userId)
+  let _sql =
+    'select homework.* from homework, users_boxes where users_boxes.boxId = homework.boxId and users_boxes.userId = ?'
+  let res = await mysql.query(_sql, [data])
   console.log(res)
   return res
 }
