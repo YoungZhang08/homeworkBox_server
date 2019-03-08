@@ -15,7 +15,7 @@ const find = async data => {
 
 const findBoxIdUserId = async data => {
   const _sql = 'select users.* from users, users_boxes where users_boxes.boxId = ? and users_boxes.userId = users.userId'
-  const res = mysql.query(_sql, [data.userId])
+  const res = mysql.query(_sql, [data.boxId])
   return res
 }
 

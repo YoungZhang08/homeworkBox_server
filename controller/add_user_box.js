@@ -3,6 +3,7 @@ const { add, find } = require('../model/users_boxes')
 const addUserBox = async ctx => {
   const data = ctx.request ? ctx.request.body : ctx
   const { userId, boxId } = data
+  // console.log(userId, boxId)
   if (!userId || !boxId) {
     return (ctx.body = {
       status: 400,

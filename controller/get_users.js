@@ -11,6 +11,7 @@ const getUsers = async ctx => {
 
   await findBoxIdUserId(data).then(
     async res => {
+      console.log(res)
       if (res.length > 0) {
         return (ctx.body = {
           status: 200,
