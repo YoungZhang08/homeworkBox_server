@@ -1,16 +1,17 @@
-// users_boxes查询404 bug，31号再改
-const { findBoxHomework } = require('../model/homework')
+const { findBoxIdUserId } = require('../model/users.js')
 
-const getHomework = async ctx => {
-  const { userId } = ctx.request.query
-  if (!userId) {
+const getUsers = async ctx => {
+  const data = ctx.request.query
+  if (!data.boxId) {
     return (ctx.body = {
       status: 400,
       msg: '缺少参数',
     })
   }
-  await findBoxHomework(userId).then(
-    res => {
+
+  await findBoxIdUserId(data).then(
+    async res => {
+      console.log(res)
       if (res.length > 0) {
         return (ctx.body = {
           status: 200,
@@ -35,5 +36,5 @@ const getHomework = async ctx => {
 }
 
 module.exports = {
-  getHomework,
+  getUsers,
 }

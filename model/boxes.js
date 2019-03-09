@@ -22,7 +22,7 @@ const find = async (data, name) => {
 
 const findUserBoxes = async data => {
   const _sql =
-    'select boxes.* from boxes, users_boxes, users where users.userId = users_boxes.userId and users_boxes.boxId = boxes.boxId and users.userId = ?'
+    'select boxes.* from boxes, users_boxes where users_boxes.userId = ? and users_boxes.boxId = boxes.boxId'
   const res = await mysql.query(_sql, data.userId)
   return res
 }

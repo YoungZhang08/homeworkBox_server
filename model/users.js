@@ -13,7 +13,14 @@ const find = async data => {
   return res
 }
 
+const findBoxIdUserId = async data => {
+  const _sql = 'select users.* from users, users_boxes where users_boxes.boxId = ? and users_boxes.userId = users.userId'
+  const res = mysql.query(_sql, [data.boxId])
+  return res
+}
+
 module.exports = {
   add,
   find,
+  findBoxIdUserId,
 }
