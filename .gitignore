@@ -1,3 +1,5 @@
 node_modules/
 config/default.js
 .idea
+upload/
+log/

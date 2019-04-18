@@ -1,21 +1,53 @@
 const router = require('koa-router')()
 
-const { createBox } = require('../controller/create_box')
-const { getBoxes } = require('../controller/get_boxes')
-const { getAddBoxes } = require('../controller/get_add_boxes')
+const {
+  createBox,
+} = require('../controller/create_box')
+const {
+  getBoxes,
+} = require('../controller/get_boxes')
+const {
+  getAddBoxes,
+} = require('../controller/get_add_boxes')
 
-const { addUserBox } = require('../controller/add_user_box.js')
+const {
+  addUserBox,
+} = require('../controller/add_user_box.js')
 
-const { addUser } = require('../controller/add_user')
-const { findUser } = require('../controller/find_user')
-const { getUsers } = require('../controller/get_users')
+const {
+  addUser,
+} = require('../controller/add_user')
+const {
+  findUser,
+} = require('../controller/find_user')
+const {
+  getUsers,
+} = require('../controller/get_users')
 
-const { getRandom } = require('../controller/get_random')
-const { addHomework } = require('../controller/add_homework')
-const { getBoxHomework } = require('../controller/get_box_homework')
-const { getHomework } = require('../controller/get_homework')
+const {
+  getRandom,
+} = require('../controller/get_random')
+const {
+  addHomework,
+} = require('../controller/add_homework')
+const {
+  getBoxHomework,
+} = require('../controller/get_box_homework')
+const {
+  getHomework,
+} = require('../controller/get_homework')
 
-const { createResources } = require('../controller/create_resources')
+const {
+  createResources,
+} = require('../controller/create_resources')
+
+const {
+  findResources,
+} = require('../controller/find_resources')
+
+const {
+  downloadResources,
+} = require('../controller/download_resources')
 
 const routers = router
   // 得到随机boxId
@@ -45,5 +77,9 @@ const routers = router
 
   // 发布资源
   .post('/createResources', createResources)
+
+  .get('/findResources', findResources)
+
+  .get('/downloadResources', downloadResources)
 
 module.exports = routers
