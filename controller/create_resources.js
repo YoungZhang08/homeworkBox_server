@@ -1,8 +1,8 @@
 const { create, find } = require('../model/boxes')
-// const { addUserBox } = require('./add_user_box')
 
-const createBox = async ctx => {
+const createResources = async ctx => {
   const boxInfo = ctx.request.body
+  console.log(boxInfo)
   const { boxId, createId, className, course } = boxInfo
   if (!boxId || boxId.length > 30 || !createId || !className || !course) {
     return (ctx.body = {
@@ -53,12 +53,12 @@ const createBox = async ctx => {
       console.log(err)
       return (ctx.body = {
         msg: '查询错误',
-        status: 400,
+        status: 500,
       })
     }
   )
 }
 
 module.exports = {
-  createBox,
+  createResources,
 }

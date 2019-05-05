@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/YoungZhang08/homeworkBox_server.git"
+    "url": "https://github.com/YoungZhang08/homeworkBox_server.git"
   },
   "keywords": [
     "Node.js",
