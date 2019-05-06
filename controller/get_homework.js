@@ -1,4 +1,3 @@
-// users_boxes查询404 bug，31号再改
 const { findBoxHomework } = require('../model/homework')
 
 const getHomework = async ctx => {

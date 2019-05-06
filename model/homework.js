@@ -9,24 +9,25 @@ let add = async data => {
     data.title,
     data.text,
   ])
-  console.log(res)
+  // console.log("res============>>>>>>>>>>>>>", res)
   return res
 }
 
 let find = async data => {
   let _sql = 'SELECT * FROM homework WHERE boxId=?'
   let res = await mysql.query(_sql, [data.boxId])
-  // console.log(res)
+  console.log(res)
   return res
 }
 
 let findBoxHomework = async data => {
   let _sql =
-    'select homework.* from homework, users_boxes where users_boxes.boxId = homework.boxId and users_boxes.userId = ?'
+    'SELECT h.* FROM homework AS h INNER JOIN users_boxes AS u ON h.boxId = u.boxId WHERE u.userId = ?'
   let res = await mysql.query(_sql, [data])
   console.log(res)
   return res
 }
+
 module.exports = {
   add,
   find,

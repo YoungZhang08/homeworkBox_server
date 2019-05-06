@@ -11,6 +11,7 @@ const addHomework = async ctx => {
   }
   await find(data).then(
     async res => {
+      console.log("res======>>>>>>>>>>>", res)
       if (res.length > 1) {
         return (ctx.body = {
           status: 200,

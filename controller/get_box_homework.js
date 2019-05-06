@@ -1,7 +1,8 @@
 const { find } = require('../model/homework')
 
 const getBoxHomework = async ctx => {
-  await find(ctx.request.body).then(
+  // console.log(ctx.request.query)
+  await find(ctx.request.query).then(
     async res => {
       console.log(res)
       if (res.length >= 0) {
@@ -16,7 +17,7 @@ const getBoxHomework = async ctx => {
         msg: '查询成功',
         data: res,
       })
-      
+
     },
     err => {
       console.log(err, 1)

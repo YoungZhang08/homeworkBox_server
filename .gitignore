@@ -3,3 +3,4 @@ config/default.js
 .idea
 upload/
 log/
+pacakge-lock.json

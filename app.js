@@ -21,7 +21,7 @@ app.use(log4js.koaLogger(log4js.getLogger('http'), {
 }))
 app.use(Logger())
 
-app.use(koaBody({
+router.use('/homework/createResources', koaBody({
   multipart: true,
   formidable: {
     keepExtensions: true,
