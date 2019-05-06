@@ -2,30 +2,33 @@ const Koa = require('koa')
 const bodyParser = require('koa-bodyparser')
 const config = require('./config/default.js')
 const router = require('./router/index.js')
-
+const Logger = require('koa-logger')
+const log4js = require('koa-log4')
+const koaBody = require('koa-body')
+const path = require('path')
+const Cors = require('@koa/cors')
 const app = new Koa()
 
 app.use(bodyParser({}))
 
-app.use(async (ctx, next) => {
-  ctx.set('Access-Control-Allow-Origin', `${ctx.request.header.origin}`)
-  ctx.set('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE')
-  ctx.set(
-    'Access-Control-Allow-Headers',
-    'x-requested-with, accept, origin, content-type, authorization'
-  )
-  ctx.set('Content-Type', 'application/json;charset=utf-8')
-  ctx.set('Access-Control-Allow-Credentials', true)
-  ctx.set('Access-Control-Max-Age', 300)
+app.use(Cors({
+  credentials: true,
+}))
 
-  if (ctx.request.method === 'OPTIONS') {
-    ctx.body = {
-      msg: 'preFlighted requested is ok!',
-    }
-    return
-  }
-  await next()
-})
+log4js.configure(path.join(__dirname, './config/log4j.json'))
+app.use(log4js.koaLogger(log4js.getLogger('http'), {
+  level: 'auto',
+}))
+app.use(Logger())
+
+app.use(koaBody({
+  multipart: true,
+  formidable: {
+    keepExtensions: true,
+    uploadDir: path.resolve(__dirname, 'upload/'),
+    maxFileSize: 200 * 1024 * 1024 * 1024,
+  },
+}))
 
 app.use(router.routes()).use(router.allowedMethods())
 

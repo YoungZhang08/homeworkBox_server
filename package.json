@@ -23,12 +23,17 @@
   },
   "homepage": "https://github.com/YoungZhang08/homeworkBox_server#readme",
   "devDependencies": {
+    "@koa/cors": "^3.0.0",
     "body-parser": "^1.18.3",
     "eslint": "^5.12.1",
     "eslint-config-google": "^0.11.0",
     "koa": "^2.6.2",
+    "koa-body": "^4.1.0",
     "koa-bodyparser": "^4.2.1",
+    "koa-log4": "^2.3.2",
+    "koa-logger": "^3.2.0",
     "koa-router": "^7.4.0",
+    "koa-send": "^5.0.0",
     "mysql": "^2.16.0"
   },
   "dependencies": {

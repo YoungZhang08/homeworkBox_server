@@ -1,5 +1,9 @@
 const mysql = require('mysql')
 const config = require('./default')
+const {
+  getLogger,
+} = require('./logger')
+const logger = getLogger()
 
 const pool = mysql.createPool({
   host: config.database.HOST,
@@ -14,10 +18,12 @@ let query = (sql, val) => {
     pool.getConnection((err, connection) => {
       if (err) {
         reject(err)
+        logger.error(`Reason: test error, Date:${new Date().toLocaleString()}, error:${err}`)
       } else {
         connection.query(sql, val, (err, res) => {
           if (err) {
             reject(err)
+            logger.error(`Reason: test error, Date:${new Date().toLocaleString()}, error:${err}`)
           } else {
             resolve(res)
           }

@@ -1,5 +1,5 @@
 const config = {
-  port: 8000,
+  port: 8080,
 
   database: {
     DATABASE: 'homework_box',
