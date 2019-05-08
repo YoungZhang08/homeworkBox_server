@@ -1,4 +1,6 @@
 const router = require('koa-router')()
+const koaBody = require('koa-body')
+const path = require('path')
 
 const {
   createBox,
@@ -76,7 +78,14 @@ const routers = router
   .get('/getHomework', getHomework)
 
   // 发布资源
-  .post('/createResources', createResources)
+  .post('/createResources', koaBody({
+    multipart: true,
+    formidable: {
+      keepExtensions: true,
+      uploadDir: path.resolve(__dirname, '../upload/'),
+      maxFileSize: 200 * 1024 * 1024 * 1024,
+    },
+  }), createResources)
 
   .get('/findResources', findResources)
 

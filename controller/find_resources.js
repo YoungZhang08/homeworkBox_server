@@ -19,7 +19,7 @@ const findResources = async ctx => {
       console.log(res)
       if (res.length >= 1) {
         return (ctx.body = {
-          msg: res,
+          data: res,
           status: 200,
         })
       }

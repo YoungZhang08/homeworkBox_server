@@ -4,7 +4,6 @@ const config = require('./config/default.js')
 const router = require('./router/index.js')
 const Logger = require('koa-logger')
 const log4js = require('koa-log4')
-const koaBody = require('koa-body')
 const path = require('path')
 const Cors = require('@koa/cors')
 const app = new Koa()
@@ -21,14 +20,6 @@ app.use(log4js.koaLogger(log4js.getLogger('http'), {
 }))
 app.use(Logger())
 
-router.use('/homework/createResources', koaBody({
-  multipart: true,
-  formidable: {
-    keepExtensions: true,
-    uploadDir: path.resolve(__dirname, 'upload/'),
-    maxFileSize: 200 * 1024 * 1024 * 1024,
-  },
-}))
 
 app.use(router.routes()).use(router.allowedMethods())
 

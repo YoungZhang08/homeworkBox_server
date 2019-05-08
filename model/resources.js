@@ -13,6 +13,7 @@ const create = async data => {
     newPath,
     title,
   ])
+  console.log(res)
   return res
 }
 

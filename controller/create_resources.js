@@ -15,6 +15,7 @@ const createResources = async ctx => {
     title,
   } = boxInfo
 
+  console.log(boxInfo, ctx.request.files)
   if (!boxId || boxId.length > 30 || !title || !ctx.request.files) {
     return (ctx.body = {
       status: 400,
