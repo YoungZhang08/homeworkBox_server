@@ -449,5 +449,143 @@ deadline|string|✅|作业截止日期
 ```
 ## 资源相关
 
-### 1. 发布资源 ❌（未完成）
-### 2. 查找某个盒子下的所有资源 ❌（未完成）
+### 1. 发布资源
+
+#### URL：/homework/createResources
+
+#### 请求方式：POST
+
+#### 参数列表：
+
+参数名|类型|必选|说明
+-----|---|----|---|
+boxId|string|✅|盒子id
+title|string|✅|资源标题
+url|string|✅|资源路径
+
+
+#### 返回结果说明：
+
+字段名|类型|必选|说明
+-----|---|----|---|
+id|string|✅|id
+boxId|string|✅|盒子id
+title|string|✅|资源标题
+url|string|✅|资源标题
+
+#### 返回JSON示例：
+```
+{
+  status: 200,
+  data: {
+    id: "0000001",
+    boxId: "28103",
+    title: "大物第一章作业",
+    url: "D:\wamp\www\homeworkBox\homeworkBox_server\upload\106251557235566000.ppt"
+  },
+  msg: "发布成功"
+}
+```
+
+### 2. 查找某个盒子下的所有资源
+#### URL：/homework/findBoxResources
+
+#### 请求方式：GET
+
+#### 参数列表：
+
+参数名|类型|必选|说明
+-----|---|----|---|
+boxId|string|✅|盒子id
+
+#### 返回结果说明：
+
+字段名|类型|必选|说明
+-----|---|----|---|
+boxId|string|✅|盒子id
+title|string|✅|资源标题
+url|string|✅|资源路径
+
+#### 返回JSON示例：
+```
+{
+  status: 200,
+  data: {
+    boxId: "28103",
+    title: "大物第一章ppt",
+    url: "D:\wamp\www\homeworkBox\homeworkBox_server\upload\106251557235566000.ppt"
+  },
+  msg: "查找成功"
+}
+```
+
+### 3. 查找个人主页下的所有资源
+#### URL：/homework/getUserResources
+
+#### 请求方式：GET
+
+#### 参数列表：
+
+参数名|类型|必选|说明
+-----|---|----|---|
+userId|string|✅|用户id（微信id）
+
+#### 返回结果说明：
+
+字段名|类型|必选|说明
+-----|---|----|---|
+boxId|string|✅|盒子id
+title|string|✅|资源标题
+url|string|✅|资源路径
+
+#### 返回JSON示例：
+```
+{
+  status: 200,
+  data: {
+    [{
+      boxId: "28103",
+      title: "大物第一章ppt",
+      url: "D:\wamp\www\homeworkBox\homeworkBox_server\upload\106251557235566000.ppt"
+    }, {
+      boxId: "10203",
+      title: "大英第四章ppt",
+      url: "D:\wamp\www\homeworkBox\homeworkBox_server\upload\106251557235566000.ppt"
+    }]
+  },
+  msg: "查找成功"
+}
+```
+### 4. 下载资源
+
+#### URL：/homework/downloadResources
+
+#### 请求方式：GET
+
+#### 参数列表：
+
+参数名|类型|必选|说明
+-----|---|----|---|
+boxId|string|✅|盒子id
+title|string|✅|资源标题
+
+#### 返回结果说明：
+
+字段名|类型|必选|说明
+-----|---|----|---|
+boxId|string|✅|盒子id
+title|string|✅|资源标题
+url|string|✅|资源路径
+
+#### 返回JSON示例：
+```
+{
+  status: 200,
+  data: {
+    boxId: "28103",
+    title: "大物第一章ppt",
+    url: "C:\Users\youngzhang\Downloads\大物第一章ppt.ppt"
+  },
+  msg: "下载成功"
+}
+```

@@ -17,12 +17,23 @@ const create = async data => {
   return res
 }
 
-const find = async data => {
+const findBoxid = async data => {
   const _sql = 'SELECT * FROM resources WHERE boxId = ?'
   const {
     boxId,
   } = data
   const res = await mysql.query(_sql, [boxId])
+  return res
+}
+
+const findUserid = async data => {
+  let _sql =
+    'SELECT r.* FROM resources AS r INNER JOIN users_boxes AS u ON r.boxId = u.boxId WHERE u.userId = ?'
+  const {
+    userId,
+  } = data
+  const res = await mysql.query(_sql, [userId])
+  console.log(res)
   return res
 }
 
@@ -33,11 +44,13 @@ const download = async data => {
     title,
   } = data
   const res = await mysql.query(_sql, [boxId, title])
+  console.log(res)
   return res
 }
 
 module.exports = {
   create,
-  find,
+  findBoxid,
+  findUserid,
   download,
 }

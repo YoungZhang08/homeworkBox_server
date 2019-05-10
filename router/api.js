@@ -44,8 +44,12 @@ const {
 } = require('../controller/create_resources')
 
 const {
-  findResources,
-} = require('../controller/find_resources')
+  findBoxResources,
+} = require('../controller/find_box_resources')
+
+const {
+  findUserResources,
+} = require('../controller/find_user_resources')
 
 const {
   downloadResources,
@@ -86,9 +90,11 @@ const routers = router
       maxFileSize: 200 * 1024 * 1024 * 1024,
     },
   }), createResources)
-
-  .get('/findResources', findResources)
-
+  // 查找盒子下的资源
+  .get('/findBoxResources', findBoxResources)
+  // 查找主页的资源
+  .get('/findUserResources', findUserResources)
+  // 下载资源
   .get('/downloadResources', downloadResources)
 
 module.exports = routers

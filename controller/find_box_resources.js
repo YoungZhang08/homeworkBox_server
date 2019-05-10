@@ -1,34 +1,30 @@
 const {
-  download,
+  findBoxid,
 } = require('../model/resources')
-const send = require('koa-send')
-const path = require('path')
 
-const downloadResources = async ctx => {
+const findBoxResources = async ctx => {
   const {
     boxId,
-    title,
   } = ctx.query
-  if (!boxId || !title) {
+  if (!boxId) {
     return (ctx.body = {
       msg: '缺少参数',
       status: 400,
     })
   }
-  await download({
+  await findBoxid({
     boxId,
-    title,
   }).then(
     async res => {
+      console.log(res)
       if (res.length >= 1) {
-        console.log(res[0].url)
-        ctx.attachment(res[0].title)
-        await send(ctx, res[0].url.split('upload')[1], {
-          root: path.join(__dirname, '../upload'),
+        return (ctx.body = {
+          data: res,
+          status: 200,
         })
       }
       return (ctx.body = {
-        msg: '该资源不存在',
+        msg: '该盒子下面没有资源',
         status: 204,
       })
     },
@@ -43,5 +39,5 @@ const downloadResources = async ctx => {
 }
 
 module.exports = {
-  downloadResources,
+  findBoxResources,
 }

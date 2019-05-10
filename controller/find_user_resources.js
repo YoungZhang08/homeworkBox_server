@@ -1,19 +1,18 @@
 const {
-  find,
+  findUserid,
 } = require('../model/resources')
 
-const findResources = async ctx => {
-  const {
-    boxId,
-  } = ctx.query
-  if (!boxId) {
+const findUserResources = async ctx => {
+  const { userId } = ctx.request.query
+  if (!userId) {
     return (ctx.body = {
-      msg: '缺少参数',
       status: 400,
+      msg: '缺少参数',
     })
   }
-  await find({
-    boxId,
+
+  await findUserid({
+    userId,
   }).then(
     async res => {
       console.log(res)
@@ -39,5 +38,5 @@ const findResources = async ctx => {
 }
 
 module.exports = {
-  findResources,
+  findUserResources,
 }
