@@ -3,6 +3,7 @@ const {
 } = require('../model/resources')
 const send = require('koa-send')
 const path = require('path')
+const filetype = require('../config/filetype')
 
 const downloadResources = async ctx => {
   const {
@@ -21,16 +22,23 @@ const downloadResources = async ctx => {
   }).then(
     async res => {
       if (res.length >= 1) {
-        console.log(res[0].url)
-        ctx.attachment(res[0].title)
+        let suffix = res[0].url.split('.')
+        console.log(filetype[suffix[suffix.length - 1]], suffix[suffix.length - 1], ctx.type)
         await send(ctx, res[0].url.split('upload')[1], {
           root: path.join(__dirname, '../upload'),
         })
+        /*
+        *Content-Disposition:"attachment;filename=ÌåÑé_2[www.mianfeiwendang.com].doc"
+        *Content-Type:"application/octet-stream; charset=gb2312"
+        */
+        ctx.set('Content-Disposition', 'attachment;filename=' + res[0].title + '.' + suffix[suffix.length - 1])
+        ctx.set('Content-Type', 'application/' + suffix[suffix.length - 1])
+      } else {
+        return (ctx.body = {
+          msg: '该资源不存在',
+          status: 204,
+        })
       }
-      return (ctx.body = {
-        msg: '该资源不存在',
-        status: 204,
-      })
     },
     err => {
       console.log(err)

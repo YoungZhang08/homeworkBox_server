@@ -15,7 +15,6 @@ const createResources = async ctx => {
     title,
   } = boxInfo
 
-  console.log(boxInfo, ctx.request.files)
   if (!boxId || boxId.length > 30 || !title || !ctx.request.files) {
     return (ctx.body = {
       status: 400,
@@ -30,7 +29,8 @@ const createResources = async ctx => {
   const {
     path,
   } = file
-  let filename = `${boxId}${Date.parse(new Date())}.${file.name.split('.')[1]}`
+  let suffix = file.name.split('.');
+  let filename = `${boxId}${Date.parse(new Date())}.${suffix[suffix.length - 1]}`
   let newPath = path.split('upload_')
   newPath[1] = filename
   newPath = newPath.join('')
